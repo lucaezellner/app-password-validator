@@ -14,7 +14,7 @@ public class RegexUtil {
     }
 
     public static boolean hasSpecialCharacter(String valor) {
-        return valor.matches(".*[@#$%^&*()-+].*");
+        return valor.matches(".*[@!#$%^&*()-+].*");
     }
 
     public static boolean hasRepeatedCharacters(String valor) {
