@@ -1,6 +1,6 @@
 # Password Validator API
 
-A API de validação de senhas `password-validator` é um projeto Java que realiza diversas verificações de segurança em senhas.
+A API de validação de senhas `app-password-validator` é um projeto Java que realiza diversas verificações de segurança em senhas.
 Este projeto utiliza Java 22 e Spring Boot 3.3.2, e segue a Clean Architecture, implementando as camadas *domain*, *application* e *presentation*.
 
 ## Funcionalidades
@@ -37,7 +37,16 @@ A API realiza as seguintes validações de senha:
 GET /passwords/validates?password=ExemploSenha123!
 ```
 
-### Exemplo de Resposta
+### Resposta da API
+
+O JSON de resposta da API possui 3 campos:
+- **valid** (boolean): Informa se a senha é válida de acordo com as verificações realizadas.
+- **validationMessage** (string): Mensagem adicional à validação, descrevendo de forma textual se a senha é válida ou não.
+- **errors** (list): Lista de strings que será preenchida somente se algum erro na validação for encontrado. Nesse caso,
+a lista conterá a descrição de cada erro.
+
+### Exemplos de resposta
+
 **Quando a senha é válida:**
 
 ```json
@@ -48,7 +57,7 @@ GET /passwords/validates?password=ExemploSenha123!
 }
 ```
 
-**Quando a senha não é válida (OBS: a lista "errors" será preenchida conforme os erros encontrados):**
+**Quando a senha não é válida:**
 ```json
 {
   "valid": false,
@@ -76,7 +85,7 @@ O projeto segue a Clean Architecture com as seguintes camadas:
 1. **Clone o repositório**:
 
     ```bash
-    git clone https://github.com/usuario/password-validator.git
+    git clone https://github.com/lucaezellner/app-password-validator.git
     cd password-validator
     ```
 
@@ -85,7 +94,7 @@ O projeto segue a Clean Architecture com as seguintes camadas:
 
 3. **Compile e execute a aplicação**:
 
-   Certifique-se de ter o Maven 3.9.8 instalado.
+   Certifique-se de ter o Maven 3 instalado.
 
     ```bash
     mvn spring-boot
