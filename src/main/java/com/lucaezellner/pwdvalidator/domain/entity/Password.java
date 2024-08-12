@@ -4,41 +4,41 @@ import com.lucaezellner.pwdvalidator.domain.enums.ValidationStatus;
 import com.lucaezellner.pwdvalidator.domain.util.RegexUtil;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Password {
     private String value;
-    private ValidationStatus validationStatus;
+    private List<ValidationStatus> validationErrors = new ArrayList<>();
 
     public Password(String value) {
         this.value = value;
-        this.validate(this.value);
+        this.validate();
     }
 
     public boolean isValid() {
-        return this.validationStatus != null && this.validationStatus == ValidationStatus.OK;
+        return validationErrors.isEmpty();
     }
 
-    private void validate(String valor) {
-        if (valor == null || valor.length() < 9) {
-            this.validationStatus = ValidationStatus.TOO_SHORT;
+    private void validate() {
+        if (this.value.length() < 9) {
+            validationErrors.add(ValidationStatus.TOO_SHORT);
         }
-        else if (!RegexUtil.hasDigit(valor)) {
-            this.validationStatus = ValidationStatus.NO_DIGITS;
+        if (!RegexUtil.hasDigit(this.value)) {
+            validationErrors.add(ValidationStatus.NO_DIGITS);
         }
-        else if (!RegexUtil.hasLowerCase(valor)) {
-            this.validationStatus = ValidationStatus.NO_LOWER_CASE;
+        if (!RegexUtil.hasLowerCase(this.value)) {
+            validationErrors.add(ValidationStatus.NO_LOWER_CASE);
         }
-        else if (!RegexUtil.hasUpperCase(valor)) {
-            this.validationStatus = ValidationStatus.NO_UPPER_CASE;
+        if (!RegexUtil.hasUpperCase(this.value)) {
+            validationErrors.add(ValidationStatus.NO_UPPER_CASE);
         }
-        else if (!RegexUtil.hasSpecialCharacter(valor)) {
-            this.validationStatus = ValidationStatus.NO_SPECIAL_CHARACTERS;
+        if (!RegexUtil.hasSpecialCharacter(this.value)) {
+            validationErrors.add(ValidationStatus.NO_SPECIAL_CHARACTERS);
         }
-        else if (RegexUtil.hasRepeatedCharacters(valor)) {
-            this.validationStatus = ValidationStatus.REPEATED_CHARACTERS;
-        }
-        else {
-            this.validationStatus = ValidationStatus.OK;
+        if (RegexUtil.hasRepeatedCharacters(this.value)) {
+            validationErrors.add(ValidationStatus.REPEATED_CHARACTERS);
         }
     }
 }
