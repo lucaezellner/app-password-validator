@@ -1,6 +1,7 @@
 # Password Validator API
 
-A API de validação de senhas `password-validator` é um projeto Java que realiza diversas verificações de segurança em senhas. Este projeto utiliza Java 22 e Spring Boot 3.3.2, e segue a Clean Architecture, implementando as camadas `domain`, `application`, e `presentation`.
+A API de validação de senhas `password-validator` é um projeto Java que realiza diversas verificações de segurança em senhas.
+Este projeto utiliza Java 22 e Spring Boot 3.3.2, e segue a Clean Architecture, implementando as camadas *domain*, *application* e *presentation*.
 
 ## Funcionalidades
 
@@ -105,3 +106,6 @@ Para executar os testes unitários, use o comando:
 ```bash
 mvn test
 ```
+
+Os testes foram desenvolvidos para validar as entidades, usecases e controllers nos diversos cenários de
+sucesso ou erro na validação e possíveis exceções lançadas durante o processamento.
