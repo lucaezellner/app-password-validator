@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ValidationStatus {
     OK("Senha válida"),
+    NULL_PASSWORD("A senha informada não pode ser nula"),
+    GENERIC_ERROR("Foram encontradas inconsistências na validação da senha"),
     NO_DIGITS("A senha informada precisa conter pelo menos 1 dígito"),
     NO_LOWER_CASE("A senha informada deve conter pelo 1 letra minúscula"),
     NO_UPPER_CASE("A senha informada deve conter pelo 1 letra maiúscula"),
