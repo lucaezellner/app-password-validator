@@ -40,10 +40,13 @@ GET /passwords/validates?password=ExemploSenha123!
 ### Resposta da API
 
 O JSON de resposta da API possui 3 campos:
-- **valid** (boolean): Informa se a senha é válida de acordo com as verificações realizadas.
-- **validationMessage** (string): Mensagem adicional à validação, descrevendo de forma textual se a senha é válida ou não.
-- **errors** (list): Lista de strings que será preenchida somente se algum erro na validação for encontrado. Nesse caso,
-a lista conterá a descrição de cada erro.
+
+| Nome                  | Tipo    | Descrição                                                                                                                                     |
+|-----------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **valid**             | boolean | Informa se a senha é válida de acordo com as verificações realizadas.                                                                         |
+| **validationMessage** | string  | Mensagem adicional à validação, descrevendo de forma textual se a senha é válida ou não.                                                      |
+| **errors**            | list    | Lista de strings que será preenchida somente se algum erro na validação for encontrado. Nesse caso, a lista conterá a descrição de cada erro. |
+
 
 ### Exemplos de resposta
 
@@ -74,11 +77,34 @@ a lista conterá a descrição de cada erro.
 
 ## Estrutura do Projeto
 
-O projeto segue a Clean Architecture com as seguintes camadas:
+O projeto segue a Clean Architecture de acordo com a estrutura abaixo, implementando as seguintes camadas:
 
 - **Domain**: Contém as entidades e regras de negócio.
 - **Application**: Contém os casos de uso e a lógica de aplicação.
 - **Presentation**: Contém os controladores e a interface com o usuário (API).
+
+   ```plaintext
+   src
+   └── main
+       └── java
+            └── com.lucaezellner.pwdvalidator
+                  ├── application
+                  │   ├── dto
+                  │   │   └── PasswordValidationResponseDto.java
+                  │   └── usecase
+                  │       └── ValidatePasswordUseCase.java
+                  ├── domain
+                  │   ├── entity
+                  │   │   └── Password.java
+                  │   ├── enums
+                  │   │   └── ValidationStatus.java
+                  │   └── util
+                  │       └── RegexUtil.java
+                  ├── presentation
+                  │   └── controller
+                  │       └── PasswordValidatorController.java
+                  └── PwdValidatorApplication.java
+   ```
 
 ## Configuração e Execução
 

@@ -2,8 +2,9 @@ package com.lucaezellner.pwdvalidator.presentation.controller;
 
 import com.lucaezellner.pwdvalidator.application.dto.PasswordValidationResponseDto;
 import com.lucaezellner.pwdvalidator.application.usecase.ValidatePasswordUseCase;
-import com.lucaezellner.pwdvalidator.domain.enums.ValidationStatus;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,12 @@ import java.util.ArrayList;
 @RequestMapping("/passwords")
 public class PasswordValidatorController {
     private final ValidatePasswordUseCase validatePasswordUseCase;
+    private static final Logger logger = LoggerFactory.getLogger(PasswordValidatorController.class);
 
     @GetMapping("/validates")
     public ResponseEntity<PasswordValidationResponseDto> validatePassword(@RequestParam String password) {
         try {
+            logger.debug("Senha recebida via API, iniciando validação");
             PasswordValidationResponseDto response = validatePasswordUseCase.execute(password);
             return ResponseEntity.ok(response);
         }
