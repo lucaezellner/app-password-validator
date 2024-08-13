@@ -116,14 +116,18 @@ O projeto segue a Clean Architecture de acordo com a estrutura abaixo, implement
     ```
 
 2. **Configure o ambiente**:
-   Certifique-se de ter o Java 22 instalado.
+   Certifique-se de ter o Java 22 instalado. Para verificar a instalação, execute o comando abaixo:
+
+   ```bash
+   java -version
+   ```
 
 3. **Compile e execute a aplicação**:
 
-   Certifique-se de ter o Maven 3 instalado.
+   Certifique-se de ter o Maven 3 instalado e configurado na variável de ambiente PATH do Windows.
 
     ```bash
-    mvn spring-boot
+    mvn spring-boot::run
     ```
 
 4. **Acesse a documentação da API**:
